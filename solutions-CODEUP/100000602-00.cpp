@@ -1,3 +1,9 @@
+/*
+ * hint:
+ * 
+ * 本体并没有按常规解法来做。
+ * 而是将求解中缀表达式和计算结果两个过程融合在一起来进行了。
+*/
 #include <stack>
 #include <string>
 #include <iostream>
