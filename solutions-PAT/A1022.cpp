@@ -2,6 +2,7 @@
  * hint:
  * cin 或 scanf 不会消除行末的 '\n'；getline 会消除
  * 因此用 getline 时要防止前面的未消除的换行
+ * 
  * 测试点 3，4：考察书编号，是固定 7 位，最后输出时应当用 0 补齐
 */
 #include <iostream>
