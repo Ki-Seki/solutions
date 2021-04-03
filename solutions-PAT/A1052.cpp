@@ -55,6 +55,5 @@ int main()
         for (int i = 0; i < cnt; i++)
             printf(i == cnt - 1 ? "%05d %d -1\n" : "%05d %d %05d\n", nodes[i].addr, nodes[i].data, nodes[i+1].addr);
     }
-    
     return 0;
 }
