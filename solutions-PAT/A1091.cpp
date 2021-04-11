@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * 使用 BFS 解题的典型例题
+*/
 #include <cstdio>
 #include <queue>
 #define MAXL 65
