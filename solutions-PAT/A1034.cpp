@@ -1,3 +1,5 @@
+// 方法一：使用图的深度优先搜索算法
+/*
 #include <iostream>
 #include <string>
 #include <map>
@@ -83,5 +85,140 @@ int main()
     cout << gangs.size() << endl;
     for (set<gang>::iterator it = gangs.begin(); it != gangs.end(); it++)
         cout << it->first << ' ' << it->second << endl;
+    return 0;
+}
+*/
+
+// 方法二：使用并查集，有更多的地方存在优化的可能
+
+#include <cstdio>
+#include <algorithm>
+#include <cstring>
+#include <set>
+#define MAXN 20000
+
+struct Node
+{
+    int father;
+    int weight;
+    int count;  // count of members
+};
+
+int n, k;
+
+Node set[MAXN];  // union-find set
+
+std::set<int> all_occured_id;
+std::set<int> ans_id;
+
+void init()
+{
+    for (int i = 0; i < MAXN; i++)
+        set[i] = {i, 0, 1};
+}
+
+int find(int x)
+{
+    int root = x;
+    while (set[root].father != root)
+        root = set[root].father;
+    return root;
+}
+
+void union_sets(int a, int b)
+{
+    int root_a = find(a), root_b = find(b);
+    if (root_a == root_b) return;
+    if (set[root_a].weight < set[root_b].weight)
+        std::swap(root_a, root_b);
+    set[root_b].father = root_a;
+    set[root_a].count += set[root_b].count;
+}
+
+char* int2cstr(int id)
+{
+    char* name = new char[4];
+    name[0] = id / 676 + 'A';
+    name[1] = id % 676 / 26 + 'A';
+    name[2] = id % 26 + 'A';
+    name[4] = '\0';
+    return name;
+}
+
+int cstr2int(char* name)
+{
+    return (name[0] - 'A') * 676 + (name[1] - 'A') * 26 + (name[2] - 'A');
+}
+
+int refind(int x)
+{
+    // find node, max, whose weight is max
+    int max = x,
+        root = x;
+    while (set[root].father != root)
+    {
+        if (set[root].weight >= set[max].weight)
+            max = root;
+        root = set[root].father;
+    }
+
+    // if max is not root, then make it root
+    if (max != root  && set[max].weight > set[root].weight)
+    {
+        int another = set[max].father;
+        set[max].father = max;  // max is a new root
+        set[max].count = set[root].count;  // copy the count of root
+        set[root].father = max;  // union two sets
+    }
+    return max;
+}
+
+int main()
+{
+    init();
+    scanf("%d %d", &n, &k);
+    for (int i = 0; i < n; i++)
+    {
+        char name1[4], name2[4];
+        int id1, id2, weight;
+        scanf("%s %s %d", name1, name2, &weight);
+        id1 = cstr2int(name1);
+        id2 = cstr2int(name2);
+        set[id1].weight += weight;
+        set[id2].weight += weight;
+        union_sets(id1, id2);
+        all_occured_id.insert(id1);
+        all_occured_id.insert(id2);
+    }
+
+    // re-organize the root
+    for (std::set<int>::iterator it = all_occured_id.begin();
+         it != all_occured_id.end(); it++)
+        refind(*it);  // make the max node become the root
+
+    // calculate the total weight
+    // by this mean, total weight is twice bigger than genuine total weight
+    for (std::set<int>::iterator it = all_occured_id.begin();
+         it != all_occured_id.end(); it++)
+    {
+        int root = find(*it);
+        if (root != *it)
+            set[root].weight += set[*it].weight;
+    }
+
+    // filter into answers
+    for (std::set<int>::iterator it = all_occured_id.begin();
+         it != all_occured_id.end(); it++)
+    {
+        int root = find(*it);
+        if (set[root].count > 2 && set[root].weight / 2 > k)  // eliminate the two-fold issue caused by above
+            ans_id.insert(root);
+    }
+
+    // output
+    printf("%d\n", ans_id.size());
+    for (std::set<int>::iterator it = ans_id.begin();
+         it != ans_id.end(); it++)
+        printf("%s %d\n", int2cstr(*it), set[*it].count);
     return 0;
 }
