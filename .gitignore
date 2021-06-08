@@ -34,4 +34,4 @@
 # Test files
 *.in
 *.out
-*test.cpp
+test.cpp
