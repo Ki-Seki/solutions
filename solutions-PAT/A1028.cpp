@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * strcmp(a, b) 返回 a - b 的值（一种理解记忆返回值的方法）
+*/
 #include <iostream>
 #include <algorithm>
 #include <cstring>

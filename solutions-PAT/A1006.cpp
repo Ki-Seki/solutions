@@ -1,3 +1,8 @@
+/*
+ * hint:
+ * 1. C风格字符串变量相互间的赋值要用memcpy，memcpy 在 C 的 <string.h> 库中
+ * 2. 时间 日期 都可以用归一化的比较方式
+*/
 #include <iostream>
 #include <cstring>
 using namespace std;

@@ -1,3 +1,8 @@
+/*
+ * hint:
+ * 查询的本质是分清楚 键 和 值
+*/
+
 #include <iostream>
 #define MAXN 1005
 typedef long long ll;

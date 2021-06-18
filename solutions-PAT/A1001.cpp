@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * 以 0 填充格式化输出：printf("%d,%03d", sign * abs / 1000, abs % 1000);
+*/
 #include <iostream>
 using namespace std;
 

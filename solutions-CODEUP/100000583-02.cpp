@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * 递归题的关键就是找清楚 递归边界 和 递归式
+*/
 #include <iostream>
 #define MAXN 25
 using namespace std;

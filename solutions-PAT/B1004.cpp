@@ -1,3 +1,8 @@
+/*
+ * hint:
+ * 掌握结构体的一种初始化方法；
+ * 结构体之间允许直接赋值
+*/
 #include <iostream>
 #define MAXC 12
 using namespace std;

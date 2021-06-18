@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * 注意循环时自问：到底遍历的是什么？
+*/
 #include <iostream>
 #define MAXN 100005
 using namespace std;

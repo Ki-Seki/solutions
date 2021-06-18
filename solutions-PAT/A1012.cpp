@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * C++ 中“不明确”错误的出现，多是因为定义的变量符号与 std 命名空间中的变量名冲突了
+*/
 #include <iostream>
 #include <algorithm>
 #define MAXN 2005

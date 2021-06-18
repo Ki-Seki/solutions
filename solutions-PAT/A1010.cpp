@@ -1,3 +1,8 @@
+/*
+ * hint:
+ * 1. 注意二分查找时：left，right 的确定问题
+ * 2. 注意要找的目标进制数是可能大于 36 进制的
+*/
 #include <iostream>
 #include <cmath>
 #include <string>

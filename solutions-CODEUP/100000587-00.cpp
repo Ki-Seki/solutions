@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * 随机选择算法的实践，本质上是一种优化的查询。不存在特定值使其达到 O(n^2)；平均 O(n)
+*/
 #include <iostream>
 #include <algorithm>
 #include <cstdlib>
