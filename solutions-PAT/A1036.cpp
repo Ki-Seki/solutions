@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * C风格字符串不可比较
+*/
 #include <iostream>
 using namespace std;
 

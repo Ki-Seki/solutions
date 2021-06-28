@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * 测试点3：含有年龄为 200 的数据，注意定义数组的边界大小
+*/
 #include <iostream>
 #include <algorithm>
 #include <cstring>

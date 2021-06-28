@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * 测试点1，5：考察当 coupon 中正数（负数）和 product 中正数（负数）个数相等时的处理
+*/
 #include <iostream>
 #include <algorithm>
 #define MAXN 100005

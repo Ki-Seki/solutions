@@ -1,3 +1,8 @@
+/*
+ * hint:
+ * 1. 逗号运算符自左向右结合，考虑变量定义的序列
+ * 2. strlen(str) 方法在 <string.h> 定义
+*/
 #include <iostream>
 #include <cstring>
 #define MAX 85

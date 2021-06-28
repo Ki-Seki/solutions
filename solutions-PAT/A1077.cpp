@@ -1,3 +1,8 @@
+/*
+ * hint:
+ * 1. <algorithm>：reverse()
+ * 2. PAT 不再支持 <cstdio>：gets()，可以用cin.getline() 来替代。此两个函数都是遇到 '\n'停止读取
+*/
 #include <iostream>
 #include <cstring>
 // #include <cstdio>

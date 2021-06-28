@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * 测试点1，测试点2：考察对排序后 stu[MAXN] 的 i（下标）和id（属性）的区别的认知程度
+*/
 #include <iostream>
 #include <algorithm>
 #define MAXN 40005

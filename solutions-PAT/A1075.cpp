@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * 测试点0，测试点4：考察对“满分数量”的计算
+*/
 #include <iostream>
 #include <algorithm>
 #define MAXN 10005

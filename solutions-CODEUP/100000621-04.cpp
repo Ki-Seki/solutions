@@ -84,10 +84,101 @@
 //     return 0;
 // }
 
-// method 2: SPFA
+// // method 2: SPFA
+// #include <cstdio>
+// #include <vector>
+// #include <queue>
+// #include <cstring>
+// #define MAXV 1005
+// #define INF 0x3fffffff
+
+// using namespace std;
+
+// struct Node {
+//     int v, dist, cost;
+// };
+
+// int n, m, s, t;
+
+// vector<Node> adj[MAXV];
+// bool in_queue[MAXV];
+// int in_queue_times[MAXV];
+
+// int dist[MAXV], cost[MAXV];
+
+// void init()
+// {
+//     for (int i = 0; i < n; i++)
+//         adj[i].clear();
+//     memset(in_queue, false, sizeof(in_queue));
+//     memset(in_queue_times, 0, sizeof(in_queue_times));
+//     fill(dist, dist + MAXV, INF);
+//     fill(cost, cost + MAXV, INF);
+// }
+
+// bool spfa(int s)
+// {
+//     // initialize
+//     dist[s] = cost[s] = 0;
+//     // bfs
+//     queue<int> q;
+//     q.push(s);
+//     in_queue[s] = true;
+//     in_queue_times[s] = 1;
+//     while (q.size())
+//     {
+//         // pop front;
+//         int u = q.front();
+//         q.pop();
+//         in_queue[u] = false;
+//         // traverse all edges of u
+//         for (int i = 0; i < adj[u].size(); i++)
+//         {
+//             int v = adj[u][i].v, d = adj[u][i].dist, c = adj[u][i].cost;
+//             if (dist[u] + d < dist[v])
+//             {
+//                 dist[v] = dist[u] + d;  // relaxation
+//                 cost[v] = cost[u] + c;
+//                 if (in_queue[v] == false)  // IN-QUEUE PROCEDURE
+//                 {
+//                     q.push(v);
+//                     in_queue[v] = true;
+//                     in_queue_times[v] += 1;
+//                     if (in_queue_times[v] >= n) return false;
+//                 }
+//             }
+//             else if (dist[u] + d == dist[v] && cost[u] + c < cost[v])
+//                 cost[v] = cost[u] + c;
+//         }
+//     }
+//     return true;
+// }
+
+
+// int main()
+// {
+//     while (scanf("%d %d", &n, &m) && n != 0 && m != 0)
+//     {
+//         init();
+//         int a, b, d, p;
+//         for (int i = 0; i < m; i++)
+//         {
+//             scanf("%d %d %d %d", &a, &b, &d, &p);
+//             adj[a].push_back({b, d, p});
+//             adj[b].push_back({a, d, p});
+//         }
+//         scanf("%d %d", &s, &t);
+//         if (spfa(s))
+//             printf("%d %d\n", dist[t], cost[t]);
+//         else
+//             printf("Detected negative cycle.\n");
+//     }
+//     return 0;
+// }
+
+// method 3: DFS
 #include <cstdio>
 #include <vector>
-#include <queue>
 #include <cstring>
 #define MAXV 1005
 #define INF 0x3fffffff
@@ -101,59 +192,45 @@ struct Node {
 int n, m, s, t;
 
 vector<Node> adj[MAXV];
-bool in_queue[MAXV];
-int in_queue_times[MAXV];
+bool is_visited[MAXV];
 
 int dist[MAXV], cost[MAXV];
 
 void init()
 {
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < MAXV; i++)
         adj[i].clear();
-    memset(in_queue, false, sizeof(in_queue));
-    memset(in_queue_times, 0, sizeof(in_queue_times));
+    memset(is_visited, false, sizeof(is_visited));
     fill(dist, dist + MAXV, INF);
     fill(cost, cost + MAXV, INF);
 }
 
-bool spfa(int s)
+//  now: current vertex, which has been visited
+void dfs(int now_v, int now_dist, int now_cost)
 {
-    // initialize
-    dist[s] = cost[s] = 0;
-    // bfs
-    queue<int> q;
-    q.push(s);
-    in_queue[s] = true;
-    in_queue_times[s] = 1;
-    while (q.size())
+    for (int i = 0; i < adj[now_v].size(); i++)
     {
-        // pop front;
-        int u = q.front();
-        q.pop();
-        in_queue[u] = false;
-        // traverse all edges of u
-        for (int i = 0; i < adj[u].size(); i++)
+        // cache status
+        int v = adj[now_v][i].v, d = adj[now_v][i].dist, c = adj[now_v][i].cost;
+        if (is_visited[v] == false)
         {
-            int v = adj[u][i].v, d = adj[u][i].dist, c = adj[u][i].cost;
-            if (dist[u] + d < dist[v])
+            if (now_dist + d < dist[v] ||
+                now_dist + d == dist[v] && now_cost + d < cost[v])
             {
-                dist[v] = dist[u] + d;  // relaxation
-                cost[v] = cost[u] + c;
-                if (in_queue[v] == false)  // IN-QUEUE PROCEDURE
-                {
-                    q.push(v);
-                    in_queue[v] = true;
-                    in_queue_times[v] += 1;
-                    if (in_queue_times[v] >= n) return false;
-                }
+                // update status
+                is_visited[v] = true;
+                dist[v] = now_dist + d;
+                cost[v] = now_cost + c;
+
+                // recursion
+                dfs(v, dist[v], cost[v]);
+
+                // restore status
+                is_visited[v] = false;
             }
-            else if (dist[u] + d == dist[v] && cost[u] + c < cost[v])
-                cost[v] = cost[u] + c;
         }
     }
-    return true;
 }
-
 
 int main()
 {
@@ -168,12 +245,9 @@ int main()
             adj[b].push_back({a, d, p});
         }
         scanf("%d %d", &s, &t);
-        if (spfa(s))
-            printf("%d %d\n", dist[t], cost[t]);
-        else
-            printf("Detected negative cycle.\n");
+        dist[s] = cost[s] = 0;
+        dfs(s, dist[s], cost[s]);
+        printf("%d %d\n", dist[t], cost[t]);
     }
     return 0;
 }
-
-// method 3: DFS
