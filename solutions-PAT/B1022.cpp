@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * 不大于10进制的转换问题，可以利用以 10 为底的整型变量来模拟一个数组
+*/
 #include <iostream>
 using namespace std;
 

@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * 测试点2：若库存量和总价格不用 double 来定义，则会报错
+*/
 #include <iostream>
 #include <algorithm>
 #define MAXN 1005

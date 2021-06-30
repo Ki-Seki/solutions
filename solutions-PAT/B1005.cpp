@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * 测试点3，4：存在计算数字过程中超过 100 的数字，如果定义的 hash_table 容量较小，需要避免溢出
+*/
 #include <iostream>
 #include <algorithm>
 #define MAX_N 105

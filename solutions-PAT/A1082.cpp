@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * 简化逻辑的充分条件是：在编写代码前充分思考
+*/
 #include <iostream>
 #include <cstring>
 #define MAXN 15

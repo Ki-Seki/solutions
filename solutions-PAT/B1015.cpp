@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * 掌握重载为 sort() 提供支持的 cmp() 函数：其顺序是需要大在前，就返回大；需要小在前，就返回小于
+*/
 #include <iostream>
 #include <algorithm>
 #define MAXN 100005
