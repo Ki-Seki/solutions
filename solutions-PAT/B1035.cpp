@@ -1,3 +1,8 @@
+/*
+ * hint:
+ * 未解决！
+ * 测试点 2：存在陷阱，初始序列与中间序列相同时的情况
+*/
 #include <iostream>
 #include <algorithm>
 #include <cstring>

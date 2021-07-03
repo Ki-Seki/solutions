@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * 测试点 2：考察当没有一个数字满足情况时的处理：应当输出一个换行
+*/
 #include <iostream>
 #include <algorithm>
 #define MAXN 100005

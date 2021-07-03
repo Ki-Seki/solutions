@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * 常见字符及其 ASCII 码 {'0': 48, '9': 57, 'A': 65, 'Z': 90, '_': 95, 'a': 97, 'z': 122}
+*/
 #include <iostream>
 #include <cstring>
 #define MAX_LEN 85

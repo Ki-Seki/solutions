@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * 变量声明的原则：哪里需要，哪里声明
+*/
 #include <iostream>
 #include <cstring>
 #define MAX 10000

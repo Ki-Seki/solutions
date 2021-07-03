@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * 测试点2：考察了存在并列时的处理，即要考虑并列时输出字母序小的
+*/
 #include <iostream>
 #define MAX_LEN 26
 using namespace std;

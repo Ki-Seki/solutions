@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * 测试点2：考察对第一个字符串的正确读取，题中未说明第一个字符串不含空格
+*/
 #include <iostream>
 #include <cstring>
 #define MAX_LEN 100005

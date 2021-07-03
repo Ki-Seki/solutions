@@ -1,3 +1,7 @@
+/*
+ * hint:
+ * 测试点3，4：考察数据较大，需要正确利用取余条件
+*/
 #include <iostream>
 #include <cstring>
 #define MAX_LEN 100005
