@@ -1,3 +1,5 @@
+// 多输出空格会报错
+
 #include <cstdio>
 #include <algorithm>
 #define MAXN 55
